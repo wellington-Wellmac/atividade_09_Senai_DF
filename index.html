@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--wellingotn Machado-->
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Atividade 09</title>
+</head>
+
+
+<body>
+    <div id="corpo">
+        <div class="questao">
+            <h1>
+                Questão 01:<span>Tabuada
+                    <a href="detalhes.html" target="_blank">detalhar</a></span>
+            </h1>
+            <input type="text" id="numeroDigitado" style="display: inline" />
+            <input type="button" value="Calcular" onclick="gerarTabuada()" />
+            <p id="resultado01">Resultado: <br>N x 1 = NX<br>N x 2 = NX<br>...<br>N x 10 = NX<br></p>
+        </div>
+        <script>
+    
+            function gerarTabuada() {
+                let numeroDigitado = Number(document.getElementById('numeroDigitado').value);
+                let resultado = 0;
+                let exibeResultado01 = "";
+    
+                for (let i = 1; i <= 10; i++) {
+                    resultado = numeroDigitado * i;
+                    exibeResultado01 += `${numeroDigitado} x ${i} = ${resultado}<br>`;
+                }
+    
+                document.getElementById('resultado01').innerHTML = exibeResultado01;
+            }
+    
+        </script>
+
+        <div class="questao">
+        <h1>
+            Questão 02:<span>Mostrar os números entre 2 valores
+                <a href="detalhes.html" target="_blank">detalhar</a></span>
+        </h1>
+        <p id="resultado02">Resultado: Os números entre A e Z são (x,x,x,x,x).</p>
+        <label for="">Valor 01:</label>
+        <input type="text" id="valor01" />
+        <label for="">Valor 02:</label>
+        <input type="text" id="valor02" />
+        <input type="button" value="Executar" onclick="geraSequenciaEntre()" />
+    </div>
+    <script>
+
+        function geraSequenciaEntre() {
+            let valor01 = Number(document.getElementById('valor01').value);
+            let valor02 = Number(document.getElementById('valor02').value);
+            let exibeResultado02 = "";
+            let mensagem = `Os números entre ${valor01}  e ${valor02} são (`;
+            let contagem = "";
+
+            if (valor01 < valor02) {
+                for (let i = valor01; i <= valor02; i++) {
+                contagem += `${i},`;
+                }
+                contagem = contagem.substring(0, contagem.length - 1); //remove a ultima vírgula da sequencia
+                exibeResultado02 += `${mensagem}${contagem}).`;
+                document.getElementById('resultado02').innerHTML = exibeResultado02;
+            }
+            else {
+                if (valor01>valor02) {
+                    for (let i = valor01; i >= valor02; i--){
+                    contagem += `${i},`;
+                }
+                 
+                contagem = contagem.substring(0, contagem.length - 1);//remove a ultima vírgula da sequencia
+                exibeResultado02 += `${mensagem}${contagem}).`;
+                document.getElementById('resultado02').innerHTML = exibeResultado02;
+                    
+                }
+                else{
+                    exibeResultado02 = `Os números  ${valor01} e ${valor02} são iguais. `;
+                    document.getElementById('resultado02').innerHTML = exibeResultado02;
+                }
+            }
+            
+        }
+    </script>
+
+        <div class="questao">
+        <h1>
+            Questão 03:<span>
+                Lista armazenada
+                <a href="detalhes.html" target="_blank">detalhar</a></span>
+        </h1>
+        <p id="resultado03">Resultado: A lista de itens é [xxxx,xxxx,xxxx,xxxxx]</p>
+        <label for="">Item:</label>
+        <input type="text" id="textoDigitado" />
+        <input type="button" value="Adicionar Item"  onclick="adicionaElemento()"/>
+        <input type="button" value="Mostrar itens" onclick="mostraElementos()"/>
+        <input type="button" value="Limpar Lista" onclick="limpaLista()" />
+        <input type="button" value="Remover Último Item" onclick="removerUltimo()" />
+    </div>
+    <script>
+        let lista = [];
+
+        function mostraElementos() {
+                lista.join(" , ");
+                let exibeResultado03 = `Resultado: A lista de itens é [${lista}]`;
+                document.getElementById("resultado03").innerHTML = exibeResultado03;
+        }
+
+        function adicionaElemento(){
+            let novoElemento = document.getElementById('textoDigitado').value;
+            lista.push(novoElemento);
+            mostraElementos();
+        }  
+        
+        function limpaLista(){
+         lista = [];
+         mostraElementos();
+        }
+
+        function removerUltimo(){
+            lista.pop();
+            mostraElementos();
+        }
+    </script>
+        <div class="questao">
+            <h1>
+                Questão 04:<span>Mega Sena
+                    <a href="detalhes.html" target="_blank">detalhar</a></span>
+            </h1>
+            <p id="resultado04">Resultado:00,00,00,00,00,00</p>
+            <input type="button" value="Sortear!" onclick="sortear()"/>
+        </div>
+        <script>
+            
+            function sortear() {
+                let exibeResultado04 = "";
+                let i = 1;
+                let dezenasSorteadas = [];
+                
+                while (i <=6) {
+                dezenasSorteadas.push(Math.trunc(Math.random() * (61 - 1) + 1));
+                i++;
+                }
+                
+                exibeResultado04 = `Resultado: [${dezenasSorteadas}]`;
+                document.getElementById("resultado04").innerHTML = exibeResultado04;
+    
+            }
+        </script>
+
+       <div class="questao">
+        <h1>
+            Questão 05:<span>
+                Lista homens e mulheres
+                <a href="detalhes.html" target="_blank">detalhar</a></span>
+        </h1>
+        <p id="resultado05">
+            Resultado: <br />Lista de homens [xxxx,xxxx,xxxx,xxxxx] <br />Lista de
+            mulheres [xxxx,xxxx,xxxx,xxxxx]</p>
+        <label for="">Nome:</label>
+        <input type="text" id="novoNome" />
+        <label for="">Sexo:</label>
+        <select name="sexo" id="sexo">
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+        </select>
+        <input type="button" value="Adicionar" onclick="adicionaPessoa()" />
+        <input type="button" value="Mostrar" onclick="mostraPessoas()" />
+        <input type="button" value="Limpar Lista"onclick="limpaListas()" />
+    </div>
+    <script>
+
+    
+        let listaHomens = [];
+        let listaMulheres = [];
+
+        function mostraPessoas() {
+                listaHomens.join(" , ");
+                listaMulheres.join(" , ");
+                let exibeResultado05 = `Lista de homens [${listaHomens}] <br /> Lista de mulheres [${listaMulheres}]`;
+                document.getElementById("resultado05").innerHTML = exibeResultado05;
+        }
+
+        function adicionaPessoa(){
+            let novaPessoa = document.getElementById('novoNome').value;
+            let sexo = document.getElementById('sexo').value;
+            
+            if (sexo == "M") {
+                listaHomens.push(novaPessoa);
+                mostraPessoas();
+            }
+            else{
+                listaMulheres.push(novaPessoa);
+                mostraPessoas();
+            }
+        }  
+        
+        function limpaListas(){
+         listaHomens = [];
+         listaMulheres = [];
+         mostraPessoas();
+        }
+    
+    </script>
+        <div class="questao">
+            <h1>
+                DESAFIO!:<span>
+                    Jo-Ken-Po <a href="detalhes.html" target="_blank">detalhar</a></span>
+            </h1>
+            <p id="resultado-desafio">Resultado: [Vitória|Derrota|Empate]</p>
+            <span class= "jogo" onclick="jogar('✊🏽')" onmouseover="this.style.fontSize = '100px'" onmouseout="this.style.fontSize = '50px'" class="mao">✊🏽</span>
+            <span class= "jogo" onclick="jogar('🖐🏽')" onmouseover="this.style.fontSize = '100px'" onmouseout="this.style.fontSize = '50px'" class="mao">🖐🏽</span>
+            <span class= "jogo" onclick="jogar('✌🏽')" onmouseover="this.style.fontSize = '100px'"  onmouseout="this.style.fontSize = '50px'" class="mao">✌🏽</span>
+            <p>Jogadas da Vez</p><br><br><br>
+            <span class="adversario" id="jogadasDaVez">👋🏽</span>
+            
+            <br><br><p id="placar"></p>
+            <script>
+                let quantidadeVitoria = 0;
+                let quantidadeDerrota = 0;
+                let quantidadeEmpate = 0;
+                function jogar(jogadaReal) {
+                
+                    let jogadaNPC = Math.trunc(Math.random() * 3);
+                    let opcoes = ['✊🏽', '🖐🏽', '✌🏽']
+                    jogadaNPC = opcoes[jogadaNPC];
+                    document.getElementById("jogadasDaVez").innerHTML = `${jogadaReal} X ${jogadaNPC}`;
+                    let resultadoDesafio = "Resultado: ";
+                    if (jogadaReal == jogadaNPC) {
+                        resultadoDesafio += "Empate";
+                        quantidadeEmpate++;
+                    } else if ((jogadaReal == '✊🏽' && jogadaNPC == '✌🏽') || (jogadaReal == '🖐🏽' && jogadaNPC == '✊🏽') || (jogadaReal == '✌🏽' && jogadaNPC == '🖐🏽')) {
+                        resultadoDesafio += "Vitoria";
+                        quantidadeVitoria++;
+                    } else {
+                        resultadoDesafio += "Derrota";
+                        quantidadeDerrota++;
+                    }
+                    document.getElementById("resultado-desafio").innerHTML = resultadoDesafio;
+                    document.getElementById("placar").innerHTML = `Vitórias (${quantidadeVitoria}) - Empates (${quantidadeEmpate}) - Derrotas (${quantidadeDerrota})`;
+    
+                }
+            </script>
+    </div>
+</body>
+
+</html>
